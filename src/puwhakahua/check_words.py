@@ -4,7 +4,7 @@ import traceback
 from puwhakahua.utils import load_corpus, load_document
 
 
-def check(corpus: str, document: str, min_length: int):
+def check(corpus: str, document: str, min_length: int, output: str = None):
     """
     Checks the document against the corpus and outputs the results.
 
@@ -14,6 +14,8 @@ def check(corpus: str, document: str, min_length: int):
     :type document: str
     :param min_length: the minimum length that words have to have
     :type min_length: int
+    :param output: the CSV file to store the output int, uses stdout out if None
+    :type output: str
     """
     stats = dict()
     corp = load_corpus(corpus)
@@ -27,9 +29,16 @@ def check(corpus: str, document: str, min_length: int):
                 stats[word] = stats[word] + 1
 
     # output stats
-    print("word,count,percentage")
-    for word in doc:
-        print("%s,%d,%f" % (word, stats[word], stats[word]/len(corp)*100))
+    if output is None:
+        print("word,count,percentage")
+        for word in doc:
+            print("%s,%d,%f" % (word, stats[word], stats[word]/len(corp)*100))
+    else:
+        print("Writing output to: %s" % output)
+        with open(output, "w") as fp:
+            fp.write("word,count,percentage\n")
+            for word in doc:
+                fp.write("%s,%d,%f\n" % (word, stats[word], stats[word]/len(corp)*100))
 
 
 def main(args=None):
@@ -43,11 +52,12 @@ def main(args=None):
         description='Checks in how many sentences of the corpus the words from the supplied document appear.',
         prog="check-words",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-c", "--corpus", help="The corpus to load (format: NUM: SENTENCE).", default=None, type=str, required=True)
-    parser.add_argument("-d", "--document", help="The text document to load and check its words.", default=None, type=str, required=True)
-    parser.add_argument("-m", "--min_length", help="The minimum length that words need to meet in order to be checked.", default=1, type=int, required=False)
+    parser.add_argument("-c", "--corpus", metavar="FILE", help="The corpus to load (format: NUM: SENTENCE).", default=None, type=str, required=True)
+    parser.add_argument("-d", "--document", metavar="FILE", help="The text document to load and check its words.", default=None, type=str, required=True)
+    parser.add_argument("-m", "--min_length", metavar="NUM", help="The minimum length that words need to meet in order to be checked.", default=1, type=int, required=False)
+    parser.add_argument("-o", "--output", metavar="FILE", help="The CSV file to store the output in.", default=None, type=str, required=False)
     parsed = parser.parse_args(args=args)
-    check(parsed.corpus, parsed.document, parsed.min_length)
+    check(parsed.corpus, parsed.document, parsed.min_length, output=parsed.output)
 
 
 def sys_main() -> int:

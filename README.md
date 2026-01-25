@@ -12,20 +12,22 @@ pip install git+https://github.com/puwhakahua/corpora-tools.git
 ### check-words
 
 ```
-usage: check-words [-h] -c CORPUS -d DOCUMENT [-m MIN_LENGTH]
+usage: check-words [-h] -c FILE -d FILE [-m NUM] [-o FILE]
 
 Checks in how many sentences of the corpus the words from the supplied
 document appear.
 
 options:
   -h, --help            show this help message and exit
-  -c CORPUS, --corpus CORPUS
+  -c FILE, --corpus FILE
                         The corpus to load (format: NUM: SENTENCE). (default:
                         None)
-  -d DOCUMENT, --document DOCUMENT
+  -d FILE, --document FILE
                         The text document to load and check its words.
                         (default: None)
-  -m MIN_LENGTH, --min_length MIN_LENGTH
+  -m NUM, --min_length NUM
                         The minimum length that words need to meet in order to
                         be checked. (default: 1)
+  -o FILE, --output FILE
+                        The CSV file to store the output in. (default: None)
 ```
