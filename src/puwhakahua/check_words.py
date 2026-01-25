@@ -1,78 +1,7 @@
 import argparse
 import traceback
 
-from typing import List, Dict, Tuple, Set
-
-
-def clean(line: str) -> str:
-    """
-    Cleans up the sentence.
-
-    :param line: the sentence to clean
-    :type line: str
-    :return: the clean sentence
-    :rtype: str
-    """
-    line = line.strip().lower()
-    line = line.replace(",", " ").replace(".", " ").replace("!", " ").replace("?", " ").replace(":", " ").replace(";", " ")
-    return line
-
-
-def load_corpus(path: str) -> List[Tuple[int, str]]:
-    """
-    Loads the corpus. Blank lines get ignored. 
-    Line format: NUM: SENTENCE
-    Sentences get split into words using blanks as separator.
-    
-    :param path: the path of the corpus to load
-    :type path: str
-    :return: the corpus (tuple of sentence ID and set of words)
-    :rtype: list
-    """
-    result = []
-
-    print("Loading corpus: %s" % path)
-
-    with open(path, "r") as fp:
-        for line in fp.readlines():
-            line = line.strip()
-            if len(line) == 0:
-                continue
-            parts = line.split(":  ")
-            if len(parts) == 2:
-                result.append((int(parts[0]), set(clean(parts[1]).split(" "))))
-
-    print("# lines in corpus: %d" % len(result))
-
-    return result
-
-
-def load_document(path: str, min_length: int) -> List[str]:
-    """
-    Loads the document and breaks it up into words.
-    Words get converted into lower case. Words that fall below
-    the minimum length get discarded. The result is a sorted list.
-
-    :param path: the text document to load
-    :type path: str
-    :param min_length: the minium length for words
-    :type min_length: int
-    :return: the list of words to check
-    :type: list
-    """
-    print("Loading document: %s" % path)
-
-    words = set()
-    with open(path, "r") as fp:
-        for line in fp.readlines():
-            line = clean(line)
-            for word in line.split(" "):
-                if len(word) >= min_length:
-                    words.add(word.lower())
-
-    result = sorted(words)
-    print("# words in document: %d" % len(result))
-    return result
+from puwhakahua.utils import load_corpus, load_document
 
 
 def check(corpus: str, document: str, min_length: int):
@@ -94,7 +23,7 @@ def check(corpus: str, document: str, min_length: int):
     for word in doc:
         stats[word] = 0
         for entry in corp:
-            if word in entry[1]:
+            if word in entry[2]:
                 stats[word] = stats[word] + 1
 
     # output stats
