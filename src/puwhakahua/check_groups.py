@@ -14,7 +14,7 @@ def check(corpus: str, document: str, min_length: int, output: str = None):
     :type document: str
     :param min_length: the minimum length that words have to have
     :type min_length: int
-    :param output: the CSV file to store the output int, uses stdout out if None
+    :param output: the CSV file to store the output in, uses stdout out if None
     :type output: str
     """
     corp = load_corpus(corpus)
