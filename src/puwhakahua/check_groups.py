@@ -1,7 +1,7 @@
 import argparse
 import traceback
 
-from puwhakahua.utils import load_corpus, load_document
+from puwhakahua.utils import load_corpus, load_document, group_occurrences
 
 
 def check(corpus: str, document: str, min_length: int, output: str = None):
@@ -17,17 +17,9 @@ def check(corpus: str, document: str, min_length: int, output: str = None):
     :param output: the CSV file to store the output int, uses stdout out if None
     :type output: str
     """
-    stats = dict()
     corp = load_corpus(corpus)
     doc = load_document(document, min_length)
-
-    # count occurrences
-    for word in doc:
-        for entry in corp:
-            if word in entry[2]:
-                if entry[1] not in stats:
-                    stats[entry[1]] = set()
-                stats[entry[1]].add(word)
+    stats = group_occurrences(corp, doc)
 
     # output stats
     if output is None:

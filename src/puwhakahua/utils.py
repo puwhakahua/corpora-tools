@@ -95,3 +95,26 @@ def word_occurrences(corpus: List[Tuple[int, int, Set[str]]], doc: List[str]) ->
                 result[word] = result[word] + 1
 
     return result
+
+
+def group_occurrences(corpus: List[Tuple[int, int, Set[str]]], doc: List[str]) -> Dict[int, Set]:
+    """
+    Records the occurrences of words in the groups of the corpus entries.
+
+    :param corpus: the corpus to use for determining the occurrences
+    :type corpus: list of tuples (sentence ID, group index, set of words)
+    :param doc: the list of words to compute the occurrences for
+    :type doc: list
+    :return: the occurrences mapping (group -> set of words that occurred)
+    :rtype: dict
+    """
+    result = dict()
+
+    for word in doc:
+        for entry in corpus:
+            if word in entry[2]:
+                if entry[1] not in result:
+                    result[entry[1]] = set()
+                result[entry[1]].add(word)
+
+    return result
