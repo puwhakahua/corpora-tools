@@ -1,4 +1,4 @@
-from typing import List, Tuple, Set
+from typing import List, Tuple, Set, Dict
 
 
 def clean(line: str) -> str:
@@ -72,4 +72,26 @@ def load_document(path: str, min_length: int) -> List[str]:
 
     result = sorted(words)
     print("# words in document: %d" % len(result))
+    return result
+
+
+def word_occurrences(corpus: List[Tuple[int, int, Set[str]]], doc: List[str]) -> Dict[str, int]:
+    """
+    Counts the word occurrences in the corpus entries.
+
+    :param corpus: the corpus to use for determining the occurrences
+    :type corpus: list of tuples (sentence ID, group index, set of words)
+    :param doc: the list of words to compute the occurrences for
+    :type doc: list
+    :return: the occurrences mapping (word -> count)
+    :rtype: dict
+    """
+    result = dict()
+
+    for word in doc:
+        result[word] = 0
+        for entry in corpus:
+            if word in entry[2]:
+                result[word] = result[word] + 1
+
     return result
