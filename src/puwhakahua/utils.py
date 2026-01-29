@@ -1,4 +1,4 @@
-from typing import List, Tuple, Set, Dict
+from typing import List, Tuple, Set, Dict, Union
 
 
 def clean(line: str) -> str:
@@ -16,7 +16,7 @@ def clean(line: str) -> str:
     return line
 
 
-def load_corpus(path: str) -> List[Tuple[int, int, Set[str]]]:
+def load_corpus(path: str, raw: bool = False) -> List[Tuple[int, int, Union[str, Set[str]]]]:
     """
     Loads the corpus. Blank lines get ignored.
     Line format: NUM: SENTENCE
@@ -24,7 +24,9 @@ def load_corpus(path: str) -> List[Tuple[int, int, Set[str]]]:
 
     :param path: the path of the corpus to load
     :type path: str
-    :return: the corpus (tuple of sentence ID, group index, set of words)
+    :param raw: whether to load the corpus in raw format
+    :type raw: bool
+    :return: the corpus (tuple of sentence ID, group index, set of words or sentence when raw)
     :rtype: list
     """
     result = []
@@ -40,7 +42,10 @@ def load_corpus(path: str) -> List[Tuple[int, int, Set[str]]]:
                 continue
             parts = line.split(":  ")
             if len(parts) == 2:
-                result.append((int(parts[0]), group, set(clean(parts[1]).split(" "))))
+                if raw:
+                    result.append((int(parts[0]), group, parts[1]))
+                else:
+                    result.append((int(parts[0]), group, set(clean(parts[1]).split(" "))))
 
     print("# lines in corpus: %d" % len(result))
 

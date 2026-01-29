@@ -37,6 +37,8 @@ setup(
     entry_points={
         "console_scripts": [
             "check-words=puwhakahua.check_words:sys_main",
+            "check-groups=puwhakahua.check_groups:sys_main",
+            "rare-word-groups=puwhakahua.rare_word_groups:sys_main",
         ],
     },
 )
