@@ -53,14 +53,14 @@ def check(corpus: str, document: str, min_length: int, min_occurrence: int, max_
                     if (last_group > -1) and (last_group != entry[1]):
                         fp.write("\n")
                     last_group = entry[1]
-                    fp.write("%05d: %s\n" % (entry[0], entry[2]))
+                    fp.write("%05d:  %s\n" % (entry[0], entry[2]))
     else:
         for entry in corp_raw:
             if entry[1] in rare_groups:
                 if (last_group > -1) and (last_group != entry[1]):
                     print()
                 last_group = entry[1]
-                print("%05d: %s" % (entry[0], entry[2]))
+                print("%05d:  %s" % (entry[0], entry[2]))
 
 
 def main(args=None):

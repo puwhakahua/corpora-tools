@@ -19,7 +19,7 @@ def clean(line: str) -> str:
 def load_corpus(path: str, raw: bool = False) -> List[Tuple[int, int, Union[str, Set[str]]]]:
     """
     Loads the corpus. Blank lines get ignored.
-    Line format: NUM: SENTENCE
+    Line format: NUM:  SENTENCE  (double blank after colon!)
     Sentences get split into words using blanks as separator.
 
     :param path: the path of the corpus to load
