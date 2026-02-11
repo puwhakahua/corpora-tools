@@ -12,6 +12,9 @@ def clean(line: str) -> str:
     """
     line = line.strip().lower()
     line = line.replace(",", " ").replace(".", " ").replace("!", " ").replace("?", " ").replace(":", " ").replace(";", " ")
+    line = line.replace("[", "").replace("]", "").replace("(", "").replace(")", "")
+    line = line.replace("'", "").replace("‘", "").replace("’", "").replace("“", "")
+    line = line.replace("$", "").replace("£", "").replace("…", "")
     return line
 
 

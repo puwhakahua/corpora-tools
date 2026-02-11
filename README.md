@@ -66,7 +66,7 @@ options:
 ### corpus-info
 
 ```
-usage: corpus-info [-h] -c FILE [-o FILE]
+usage: corpus-info [-h] -c FILE [-o FILE] [-w FILE]
 
 Outputs some information on the corpus.
 
@@ -77,6 +77,9 @@ options:
                         None)
   -o FILE, --output FILE
                         The CSV file to store the output in. (default: None)
+  -w FILE, --word_list FILE
+                        The text file to store the unique, clean words in.
+                        (default: None)
 ```
 
 
