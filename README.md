@@ -12,7 +12,7 @@ pip install git+https://github.com/puwhakahua/corpora-tools.git
 ### check-words
 
 ```
-usage: check-words [-h] -c FILE -d FILE [-m NUM] [-o FILE]
+usage: check-words [-h] -c FILE -d FILE [-m NUM] [-o FILE] [-p] [-P FILE]
 
 Checks in how many sentences of the corpus the words from the supplied
 document appear.
@@ -30,12 +30,16 @@ options:
                         be checked. (default: 1)
   -o FILE, --output FILE
                         The CSV file to store the output in. (default: None)
+  -p, --plot            Whether to visualize the data. (default: False)
+  -P FILE, --plot_output FILE
+                        The file to store the plot in, does not require
+                        visualization (-p). (default: None)
 ```
 
 ### check-groups
 
 ```
-usage: check-groups [-h] -c FILE -d FILE [-m NUM] [-o FILE]
+usage: check-groups [-h] -c FILE -d FILE [-m NUM] [-o FILE] [-p] [-P FILE]
 
 Checks how many unique words from the document appear in each group of the
 corpus.
@@ -53,7 +57,28 @@ options:
                         be checked. (default: 1)
   -o FILE, --output FILE
                         The CSV file to store the output in. (default: None)
+  -p, --plot            Whether to visualize the data. (default: False)
+  -P FILE, --plot_output FILE
+                        The file to store the plot in, does not require
+                        visualization (-p). (default: None)
 ```
+
+### corpus-info
+
+```
+usage: corpus-info [-h] -c FILE [-o FILE]
+
+Outputs some information on the corpus.
+
+options:
+  -h, --help            show this help message and exit
+  -c FILE, --corpus FILE
+                        The corpus to load (format: NUM: SENTENCE). (default:
+                        None)
+  -o FILE, --output FILE
+                        The CSV file to store the output in. (default: None)
+```
+
 
 ### rare-word-groups
 
@@ -85,3 +110,8 @@ options:
                         The text file to store the corpus subset in, uses
                         stdout if not provided. (default: None)
 ```
+
+## Documentation
+
+* [corpus](doc/corpus.md)
+* [examples](doc/examples.md)

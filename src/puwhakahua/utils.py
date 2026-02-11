@@ -16,7 +16,7 @@ def clean(line: str) -> str:
     return line
 
 
-def load_corpus(path: str, raw: bool = False) -> List[Tuple[int, int, Union[str, Set[str]]]]:
+def load_corpus(path: str, raw: bool = False, quiet: bool = False) -> List[Tuple[int, int, Union[str, Set[str]]]]:
     """
     Loads the corpus. Blank lines get ignored.
     Line format: NUM:  SENTENCE  (double blank after colon!)
@@ -26,12 +26,15 @@ def load_corpus(path: str, raw: bool = False) -> List[Tuple[int, int, Union[str,
     :type path: str
     :param raw: whether to load the corpus in raw format
     :type raw: bool
+    :param quiet: whether to suppress logging info
+    :type quiet: bool
     :return: the corpus (tuple of sentence ID, group index, set of words or sentence when raw)
     :rtype: list
     """
     result = []
 
-    print("Loading corpus: %s" % path)
+    if not quiet:
+        print("Loading corpus: %s" % path)
 
     group = 0
     with open(path, "r") as fp:
@@ -47,7 +50,8 @@ def load_corpus(path: str, raw: bool = False) -> List[Tuple[int, int, Union[str,
                 else:
                     result.append((int(parts[0]), group, set(clean(parts[1]).split(" "))))
 
-    print("# lines in corpus: %d" % len(result))
+    if not quiet:
+        print("# lines in corpus: %d" % len(result))
 
     return result
 

@@ -1,10 +1,12 @@
 import argparse
 import traceback
+import matplotlib.pyplot as plt
 
 from puwhakahua.utils import load_corpus, load_document, word_occurrences
 
 
-def check(corpus: str, document: str, min_length: int, output: str = None):
+def check(corpus: str, document: str, min_length: int, output: str = None,
+          plot: bool = False, plot_output: str = None):
     """
     Checks the document against the corpus and outputs the results.
 
@@ -16,6 +18,10 @@ def check(corpus: str, document: str, min_length: int, output: str = None):
     :type min_length: int
     :param output: the CSV file to store the output in, uses stdout out if None
     :type output: str
+    :param plot: whether to plot the data
+    :type plot: bool
+    :param plot_output: the file to store the plot in
+    :type plot_output: str
     """
     corp = load_corpus(corpus)
     doc = load_document(document, min_length)
@@ -33,6 +39,20 @@ def check(corpus: str, document: str, min_length: int, output: str = None):
             for word in doc:
                 fp.write("%s,%d,%f\n" % (word, stats[word], stats[word]/len(corp)*100))
 
+    if plot or (plot_output is not None):
+        count = []
+        for word in doc:
+            count.append(stats[word])
+        count.sort()
+        fig, ax = plt.subplots()
+        ax.plot(count)
+        ax.set(ylabel='# sentences',
+               title='Number of sentences in corpus a word occurs in')
+        if plot_output is not None:
+            fig.savefig(plot_output)
+        if plot:
+            plt.show()
+
 
 def main(args=None):
     """
@@ -49,8 +69,11 @@ def main(args=None):
     parser.add_argument("-d", "--document", metavar="FILE", help="The text document to load and check its words.", default=None, type=str, required=True)
     parser.add_argument("-m", "--min_length", metavar="NUM", help="The minimum length that words need to meet in order to be checked.", default=1, type=int, required=False)
     parser.add_argument("-o", "--output", metavar="FILE", help="The CSV file to store the output in.", default=None, type=str, required=False)
+    parser.add_argument("-p", "--plot", action="store_true", help="Whether to visualize the data.")
+    parser.add_argument("-P", "--plot_output", metavar="FILE", help="The file to store the plot in, does not require visualization (-p).", default=None, type=str, required=False)
     parsed = parser.parse_args(args=args)
-    check(parsed.corpus, parsed.document, parsed.min_length, output=parsed.output)
+    check(parsed.corpus, parsed.document, parsed.min_length, output=parsed.output,
+          plot=parsed.plot, plot_output=parsed.plot_output)
 
 
 def sys_main() -> int:

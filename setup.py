@@ -30,6 +30,7 @@ setup(
     packages=find_namespace_packages(where='src'),
     install_requires=[
         "setuptools",
+        "matplotlib",
     ],
     version="0.0.1",
     author='Peter Reutemann',
@@ -38,6 +39,7 @@ setup(
         "console_scripts": [
             "check-words=puwhakahua.check_words:sys_main",
             "check-groups=puwhakahua.check_groups:sys_main",
+            "corpus-info=puwhakahua.corpus_info:sys_main",
             "rare-word-groups=puwhakahua.rare_word_groups:sys_main",
         ],
     },
