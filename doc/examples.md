@@ -15,6 +15,36 @@ name,value
 # groups,1526
 ```
 
+
+## Information on document
+
+```bash
+doc-info \
+  -d "./test/Maoripassage1.txt"
+```
+
+Will output something like this:
+
+```
+name,value
+# unique words,165
+max word length,13
+# words of length 1,6
+# words of length 2,17
+# words of length 3,36
+# words of length 4,37
+# words of length 5,21
+# words of length 6,25
+# words of length 7,7
+# words of length 8,9
+# words of length 9,4
+# words of length 11,1
+# words of length 13,2
+```
+
+![img](img/Maoripassage1-word-dist.png)
+
+
 ## Per corpus group: count unique words from document that appear in group
 
 ### Maoripassage 1

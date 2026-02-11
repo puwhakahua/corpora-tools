@@ -80,6 +80,22 @@ options:
 ```
 
 
+### doc-info
+
+```
+usage: doc-info [-h] -d FILE [-o FILE]
+
+Outputs some information on the text document.
+
+options:
+  -h, --help            show this help message and exit
+  -d FILE, --document FILE
+                        The text document to load. (default: None)
+  -o FILE, --output FILE
+                        The CSV file to store the output in. (default: None)
+```
+
+
 ### rare-word-groups
 
 ```

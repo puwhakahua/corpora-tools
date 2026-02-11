@@ -11,8 +11,7 @@ def clean(line: str) -> str:
     :rtype: str
     """
     line = line.strip().lower()
-    line = line.replace(",", " ").replace(".", " ").replace("!", " ").replace("?", " ").replace(":", " ").replace(";",
-                                                                                                                  " ")
+    line = line.replace(",", " ").replace(".", " ").replace("!", " ").replace("?", " ").replace(":", " ").replace(";", " ")
     return line
 
 
@@ -56,7 +55,7 @@ def load_corpus(path: str, raw: bool = False, quiet: bool = False) -> List[Tuple
     return result
 
 
-def load_document(path: str, min_length: int) -> List[str]:
+def load_document(path: str, min_length: int, quiet: bool = False) -> List[str]:
     """
     Loads the document and breaks it up into words.
     Words get converted into lower case. Words that fall below
@@ -68,8 +67,11 @@ def load_document(path: str, min_length: int) -> List[str]:
     :type min_length: int
     :return: the list of words to check
     :type: list
+    :param quiet: whether to suppress logging info
+    :type quiet: bool
     """
-    print("Loading document: %s" % path)
+    if not quiet:
+        print("Loading document: %s" % path)
 
     words = set()
     with open(path, "r") as fp:
@@ -80,7 +82,8 @@ def load_document(path: str, min_length: int) -> List[str]:
                     words.add(word.lower())
 
     result = sorted(words)
-    print("# words in document: %d" % len(result))
+    if not quiet:
+        print("# words in document: %d" % len(result))
     return result
 
 

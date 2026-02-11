@@ -40,6 +40,7 @@ setup(
             "check-words=puwhakahua.check_words:sys_main",
             "check-groups=puwhakahua.check_groups:sys_main",
             "corpus-info=puwhakahua.corpus_info:sys_main",
+            "doc-info=puwhakahua.doc_info:sys_main",
             "rare-word-groups=puwhakahua.rare_word_groups:sys_main",
         ],
     },
