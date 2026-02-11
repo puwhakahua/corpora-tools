@@ -113,5 +113,4 @@ options:
 
 ## Documentation
 
-* [corpus](doc/corpus.md)
-* [examples](doc/examples.md)
+See [here](doc/README.md) for some documentation and examples.
