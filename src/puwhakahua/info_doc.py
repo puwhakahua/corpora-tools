@@ -70,7 +70,7 @@ def main(args=None):
     """
     parser = argparse.ArgumentParser(
         description='Outputs some information on the text document.',
-        prog="doc-info",
+        prog="info-doc",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-d", "--document", metavar="FILE", help="The text document to load.", default=None, type=str, required=True)
     parser.add_argument("-o", "--output", metavar="FILE", help="The CSV file to store the output in.", default=None, type=str, required=False)

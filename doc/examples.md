@@ -3,7 +3,7 @@
 ## Information on corpus
 
 ```bash
-corpus-info \
+info-corpus \
   -c "./test/Te Ara Copora grouped and numbered.txt"
 ```
 
@@ -19,7 +19,7 @@ name,value
 ## Information on document
 
 ```bash
-doc-info \
+info-doc \
   -d "./test/Maoripassage1.txt"
 ```
 
@@ -131,7 +131,7 @@ rare-word-groups \
 Information about the corpus:
 
 ```bash
-corpus-info \
+info-corpus \
   -c ./test/output/Maoripassage1-corpus-01to25.txt
 ```
 

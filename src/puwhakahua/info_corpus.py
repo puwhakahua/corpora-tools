@@ -57,7 +57,7 @@ def main(args=None):
     """
     parser = argparse.ArgumentParser(
         description='Outputs some information on the corpus.',
-        prog="corpus-info",
+        prog="info-corpus",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-c", "--corpus", metavar="FILE", help="The corpus to load (format: NUM: SENTENCE).", default=None, type=str, required=True)
     parser.add_argument("-o", "--output", metavar="FILE", help="The CSV file to store the output in.", default=None, type=str, required=False)

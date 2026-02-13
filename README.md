@@ -63,10 +63,10 @@ options:
                         visualization (-p). (default: None)
 ```
 
-### corpus-info
+### info-corpus
 
 ```
-usage: corpus-info [-h] -c FILE [-o FILE] [-w FILE]
+usage: info-corpus [-h] -c FILE [-o FILE] [-w FILE]
 
 Outputs some information on the corpus.
 
@@ -83,10 +83,10 @@ options:
 ```
 
 
-### doc-info
+### info-doc
 
 ```
-usage: doc-info [-h] -d FILE [-o FILE]
+usage: info-doc [-h] -d FILE [-o FILE]
 
 Outputs some information on the text document.
 
