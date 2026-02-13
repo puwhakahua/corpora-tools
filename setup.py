@@ -24,6 +24,7 @@ setup(
         'Topic :: Utilities',
         'Programming Language :: Python :: 3',
     ],
+    license="GPL-3.0-only",
     package_dir={
         '': 'src'
     },
