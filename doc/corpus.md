@@ -9,6 +9,11 @@ ID:  TEXT
 With the ID being a 0-left-padded number starting at 1, separated from the
 text of the sentence by a colon and two blanks.
 
+### Groups
+
+An empty line separates groups of sentences (e.g., on a certain theme)
+within the corpus.
+
 
 ## Example
 
