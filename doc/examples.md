@@ -166,3 +166,22 @@ check-groups \
 ```
 
 ![img](img/Maoripassage1-corpus-01to25-groups.png)
+
+
+## Split corpus into subsets
+
+### Random subsets of 100 groups each
+
+The following command splits a corpus into subsets (with the same file format),
+with each subset containing at most 100 groups (the last split contains the 
+remainder). The order of groups is randomized before generating the splits,
+using a seed value for reproducible outputs:
+
+```bash
+split-corpus \
+  -c "./test/Te Ara Copora grouped and numbered.txt" \
+  -r \
+  -s 1 \
+  -n 100 \
+  -o "./test/output"
+```

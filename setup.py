@@ -43,6 +43,7 @@ setup(
             "info-corpus=puwhakahua.info_corpus:sys_main",
             "info-doc=puwhakahua.info_doc:sys_main",
             "rare-word-groups=puwhakahua.rare_word_groups:sys_main",
+            "split-corpus=puwhakahua.split_corpus:sys_main",
         ],
     },
 )

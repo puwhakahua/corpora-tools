@@ -130,6 +130,27 @@ options:
                         stdout if not provided. (default: None)
 ```
 
+### split-corpus
+
+```
+usage: split-corpus [-h] -c FILE [-o DIR] [-r] [-s SEED] [-n NUM]
+
+Splits the corpus into subsets.
+
+options:
+  -h, --help            show this help message and exit
+  -c FILE, --corpus FILE
+                        The corpus to split (format: NUM: SENTENCE). (default:
+                        None)
+  -o DIR, --output DIR  The directory to store the splits in. (default: None)
+  -r, --randomize       Whether to randomize the group order. (default: False)
+  -s SEED, --seed SEED  The seed value for the randomization, default uses no
+                        seed. (default: None)
+  -n NUM, --split_size NUM
+                        The number of groups within a split. (default: 100)
+```
+
+
 ## Documentation
 
 See [here](doc/README.md) for some documentation and examples.
