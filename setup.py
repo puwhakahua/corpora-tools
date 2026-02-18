@@ -14,7 +14,7 @@ def _read(f):
 
 setup(
     name="corpora_tools",
-    description="Python3 library for evaluating text corpora.",
+    description="Python3 library for working with text corpora.",
     long_description=(
             _read('DESCRIPTION.rst') + b'\n' +
             _read('CHANGES.rst')).decode('utf-8'),
@@ -40,6 +40,7 @@ setup(
         "console_scripts": [
             "check-words=puwhakahua.check_words:sys_main",
             "check-groups=puwhakahua.check_groups:sys_main",
+            "export-corpus=puwhakahua.export_corpus:sys_main",
             "info-corpus=puwhakahua.info_corpus:sys_main",
             "info-doc=puwhakahua.info_doc:sys_main",
             "rare-word-groups=puwhakahua.rare_word_groups:sys_main",

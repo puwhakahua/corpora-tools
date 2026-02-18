@@ -185,3 +185,22 @@ split-corpus \
   -n 100 \
   -o "./test/output"
 ```
+
+
+## Export corpus
+
+The following exports all the sentences of the `Maoripassage1-corpus-01to25.txt`
+corpus as separate text files (with the sentence ID as the file name, plus `.txt`
+as extension) in the output directory `./output/sentences/`:
+
+```bash
+export-corpus \
+  -c "./output/Maoripassage1-corpus-01to25.txt" \
+  -o ./output/sentences/
+```
+
+Those sentence text files, alongside their `.wav` files can then be read with the
+[audio-dataset-converter](https://github.com/waikato-llm/audio-dataset-converter/) 
+using the [from-txt-sp](https://github.com/waikato-llm/audio-dataset-converter/blob/main/plugins/from-txt-sp.md)
+reader and converted into other formats, e.g., 
+[to-piper-sp](https://github.com/waikato-llm/audio-dataset-converter/blob/main/plugins/to-piper-sp.md).

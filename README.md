@@ -1,5 +1,5 @@
 # corpora-tools
-Tools for evaluating text corpora.
+Tools for working with text corpora.
 
 ## Installation
 
@@ -62,6 +62,23 @@ options:
                         The file to store the plot in, does not require
                         visualization (-p). (default: None)
 ```
+
+### export-corpus
+
+```
+usage: export-corpus [-h] -c FILE -o DIR
+
+Exports the sentences of the corpus into individual text files, using the ID
+as file name.
+
+options:
+  -h, --help            show this help message and exit
+  -c FILE, --corpus FILE
+                        The corpus to load (format: NUM: SENTENCE). (default:
+                        None)
+  -o DIR, --output DIR  The directory to store the output in. (default: None)
+```
+
 
 ### info-corpus
 
