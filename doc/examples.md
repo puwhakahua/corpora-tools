@@ -217,3 +217,16 @@ export-corpus \
   -i 1 11 21 31 41 51 61 71 81 91 \
   -o ./output/sentences/
 ```
+
+### Randomized export
+
+If you just want a random subset, you can do that as well. The following
+exports 100 randomly selected sentences (specify the seed for the random
+number generator with `-s` in order to get repeatable exports):
+
+```bash
+export-corpus \
+  -c "./output/Te Ara Copora grouped and numbered.txt" \
+  -r 100 \
+  -o ./output/sentences/
+```

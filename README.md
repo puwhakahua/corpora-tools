@@ -66,7 +66,7 @@ options:
 ### export-corpus
 
 ```
-usage: export-corpus [-h] -c FILE -o DIR [-i [ID ...]]
+usage: export-corpus [-h] -c FILE -o DIR [-i [ID ...]] [-s SEED] [-r NUM]
 
 Exports the sentences of the corpus into individual text files, using the ID
 as file name.
@@ -80,6 +80,12 @@ options:
   -i [ID ...], --ids [ID ...]
                         The specific IDs of sentences to export rather than
                         the whole corpus. (default: None)
+  -s SEED, --seed SEED  The seed value to use for the randomized export, uses
+                        unseeded randomization if none provided. (default:
+                        None)
+  -r NUM, --num_random NUM
+                        The number of randomly selected sentences to export.
+                        (default: None)
 ```
 
 
