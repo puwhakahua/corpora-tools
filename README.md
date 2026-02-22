@@ -66,7 +66,7 @@ options:
 ### export-corpus
 
 ```
-usage: export-corpus [-h] -c FILE -o DIR
+usage: export-corpus [-h] -c FILE -o DIR [-i [ID ...]]
 
 Exports the sentences of the corpus into individual text files, using the ID
 as file name.
@@ -77,6 +77,9 @@ options:
                         The corpus to load (format: NUM: SENTENCE). (default:
                         None)
   -o DIR, --output DIR  The directory to store the output in. (default: None)
+  -i [ID ...], --ids [ID ...]
+                        The specific IDs of sentences to export rather than
+                        the whole corpus. (default: None)
 ```
 
 

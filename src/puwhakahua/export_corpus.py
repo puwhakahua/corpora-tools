@@ -1,11 +1,12 @@
 import argparse
 import os
 import traceback
+from typing import List
 
 from puwhakahua.utils import load_corpus, clean
 
 
-def export(corpus: str, output: str = None):
+def export(corpus: str, output: str = None, ids: List[int] = None):
     """
     Exports the corpus to the specified output directory.
 
@@ -13,11 +14,21 @@ def export(corpus: str, output: str = None):
     :type corpus: str
     :param output: the directory to store the output in
     :type output: str
+    :param ids: the explicit list of IDs to export, ignored if None
+    :type ids: list or None
     """
     corp = load_corpus(corpus, raw=True, quiet=True)
 
     count = 0
+    ids_set = None
+    max_items = len(corp)
+    if ids is not None:
+        ids_set = set(ids)
+        max_items = len(ids)
     for item in corp:
+        if ids_set is not None:
+            if item[0] not in ids_set:
+                continue
         path = os.path.join(output, "%05d.txt" % item[0])
         with open(path, "w") as fp:
             fp.write(item[2])
@@ -25,8 +36,8 @@ def export(corpus: str, output: str = None):
         # progress
         count += 1
         if count % 100 == 0:
-            print("Processing %d/%d..." % (count, len(corp)))
-    print("Processed %d sentences!" % len(corp))
+            print("Processing %d/%d..." % (count, max_items))
+    print("Processed %d sentences!" % max_items)
 
 
 def main(args=None):
@@ -42,8 +53,9 @@ def main(args=None):
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-c", "--corpus", metavar="FILE", help="The corpus to load (format: NUM: SENTENCE).", default=None, type=str, required=True)
     parser.add_argument("-o", "--output", metavar="DIR", help="The directory to store the output in.", default=None, type=str, required=True)
+    parser.add_argument("-i", "--ids", metavar="ID", help="The specific IDs of sentences to export rather than the whole corpus.", default=None, type=int, required=False, nargs="*")
     parsed = parser.parse_args(args=args)
-    export(parsed.corpus, output=parsed.output)
+    export(parsed.corpus, output=parsed.output, ids=parsed.ids)
 
 
 def sys_main() -> int:
