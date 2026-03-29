@@ -1,4 +1,5 @@
 import argparse
+import sys
 import traceback
 
 from puwhakahua.utils import load_corpus, clean
@@ -15,26 +16,44 @@ def generate(corpus: str, output: str = None, word_list: str = None):
     :param word_list: the text file to store the unique words in, ignored if None
     :type word_list: str
     """
-    corp = load_corpus(corpus, quiet=True)
+    corp = load_corpus(corpus, quiet=True, raw=True)
     groups = set()
     for item in corp:
         groups.add(item[1])
+
+    # compute some stats
+    sent_min = sys.maxsize
+    sent_max = 0
+    sent_mean = 0.0
+    for item in corp:
+        sent_len = len(item[2])
+        sent_min = min(sent_min, sent_len)
+        sent_max = max(sent_max, sent_len)
+        sent_mean += sent_len
+    sent_mean /= len(corp)
 
     # output stats
     if output is None:
         print("name,value")
         print("# sentences,%d" % len(corp))
         print("# groups,%d" % len(groups))
+        print("# min sentence length,%d" % sent_min)
+        print("# max sentence length,%d" % sent_max)
+        print("# mean sentence length,%f" % sent_mean)
     else:
         print("Writing output to: %s" % output)
         with open(output, "w") as fp:
             fp.write("name,value\n")
             fp.write("# sentences,%d\n" % len(corp))
             fp.write("# groups,%d\n" % len(groups))
+            fp.write("# min sentence length,%d\n" % sent_min)
+            fp.write("# max sentence length,%d\n" % sent_max)
+            fp.write("# mean sentence length,%f\n" % sent_mean)
 
     if word_list is not None:
         if output is not None:
             print("Writing word list to: %s" % word_list)
+        corp = load_corpus(corpus, quiet=True, raw=False)
         words = set()
         for item in corp:
             for w in item[2]:
