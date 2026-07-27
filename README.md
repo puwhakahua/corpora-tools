@@ -66,10 +66,11 @@ options:
 ### export-corpus
 
 ```
-usage: export-corpus [-h] -c FILE -o DIR [-i [ID ...]] [-s SEED] [-r NUM]
+usage: export-corpus [-h] -c FILE -o DIR [-P PREFIX] [-S SUFFIX] [-L WIDTH]
+                     [-i [ID ...]] [-s SEED] [-r NUM] [-a EXT]
 
 Exports the sentences of the corpus into individual text files, using the ID
-as file name.
+in conjunction with the prefix and suffix as file name.
 
 options:
   -h, --help            show this help message and exit
@@ -77,6 +78,15 @@ options:
                         The corpus to load (format: NUM: SENTENCE). (default:
                         None)
   -o DIR, --output DIR  The directory to store the output in. (default: None)
+  -P PREFIX, --prefix PREFIX
+                        The prefix to use for generating the file names, i.e.,
+                        the string before the ID. (default: )
+  -S SUFFIX, --suffix SUFFIX
+                        The suffix to use for generating the file names, i.e.,
+                        the string after the ID. (default: .txt)
+  -L WIDTH, --left_pad WIDTH
+                        The width to use for left-padding the ID with 0s,
+                        disabled if <=1. (default: 5)
   -i [ID ...], --ids [ID ...]
                         The specific IDs of sentences to export rather than
                         the whole corpus. (default: None)
@@ -86,6 +96,10 @@ options:
   -r NUM, --num_random NUM
                         The number of randomly selected sentences to export.
                         (default: None)
+  -a EXT, --audio_companion_file EXT
+                        The extension (incl dot) of the audio companion file
+                        that must be present for an ID, otherwise the ID gets
+                        skipped from the export. (default: None)
 ```
 
 
