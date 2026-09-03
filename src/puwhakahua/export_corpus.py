@@ -44,7 +44,7 @@ def export(corpus: str, output: str = None, prefix: str = "", suffix: str = ".tx
     # generate file name format
     name_format = prefix
     if left_pad > 1:
-        name_format += "%" + "0" * left_pad + "d"
+        name_format += "%" + "0%d" % left_pad + "d"
     else:
         name_format += "%d"
     name_format += suffix
