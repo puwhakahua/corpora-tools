@@ -1,3 +1,4 @@
+import traceback
 from typing import List, Tuple, Set, Dict, Union
 
 
@@ -56,6 +57,40 @@ def load_corpus(path: str, raw: bool = False, quiet: bool = False) -> List[Tuple
         print("# lines in corpus: %d" % len(result))
 
     return result
+
+
+def save_corpus(corpus: List[Tuple[int, int, str]], output: str, quiet: bool = False) -> bool:
+    """
+    Saves the corpus in the specified file.
+
+    :param corpus: the corpus to save
+    :type corpus: list of tuples (sentence ID, group ID, sentence)
+    :param output: the file to write to
+    :type output: str
+    :param quiet: whether to suppress logging output
+    :type quiet: bool
+    :return: whether successfully written
+    :rtype: bool
+    """
+    if not quiet:
+        print("Writing corpus to: %s" % output)
+
+    try:
+        group_id_old = None
+        with open(output, "w") as fp:
+            for sentence_id, group_id, sentence in corpus:
+                if group_id_old is None:
+                    group_id_old = group_id
+                elif group_id != group_id_old:
+                    fp.write("\n")
+                    group_id_old = group_id
+                fp.write("%05d:  %s\n" % (sentence_id, sentence))
+        return True
+    except:
+        if not quiet:
+            print("Failed to write corpus to: %s" % output)
+        traceback.print_exc()
+        return False
 
 
 def load_document(path: str, min_length: int, quiet: bool = False) -> List[str]:
