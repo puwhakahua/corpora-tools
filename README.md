@@ -102,6 +102,23 @@ options:
                         skipped from the export. (default: None)
 ```
 
+## import-wwc
+
+```
+usage: import-wwc [-h] -i FILE -o FILE
+
+Imports the untagged text from the WWC corpus and outputs the cleaned up
+sentences in standard corpus format.
+
+options:
+  -h, --help            show this help message and exit
+  -i FILE, --input FILE
+                        The WWC text file to process. (default: None)
+  -o FILE, --output FILE
+                        The corpus file to store the output in. (default:
+                        None)
+```
+
 
 ### info-corpus
 

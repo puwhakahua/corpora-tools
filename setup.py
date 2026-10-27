@@ -41,6 +41,7 @@ setup(
             "check-words=puwhakahua.check_words:sys_main",
             "check-groups=puwhakahua.check_groups:sys_main",
             "export-corpus=puwhakahua.export_corpus:sys_main",
+            "import-wwc=puwhakahua.import_wwc:sys_main",
             "info-corpus=puwhakahua.info_corpus:sys_main",
             "info-doc=puwhakahua.info_doc:sys_main",
             "rare-word-groups=puwhakahua.rare_word_groups:sys_main",
